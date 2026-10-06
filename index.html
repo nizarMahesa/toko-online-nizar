@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MiniShop | Toko Online</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-page="home">
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="index.html" class="brand" aria-label="MiniShop home">
+        <span class="brand-mark">🛍️</span>
+        <span>Mini<span style="color: var(--primary);">Shop</span></span>
+      </a>
+
+      <nav class="nav-links" aria-label="Navigasi utama">
+        <a href="index.html" class="active">Beranda</a>
+        <a href="index.html">Produk</a>
+        <a href="keranjang.html">Keranjang</a>
+        <a href="checkout.html">Checkout</a>
+      </nav>
+
+      <div class="header-actions">
+        <div class="user-pill" id="userChip" style="display:flex; align-items:center; gap:10px;">
+          <span class="user-label">Halo, <strong id="userName">Guest</strong></span>
+          <button class="secondary-btn" id="loginAction" type="button" style="padding:10px 14px;">Login</button>
+          <button class="secondary-btn" id="logoutBtn" type="button" style="padding:10px 14px; display:none;">Logout</button>
+        </div>
+        <button class="icon-button" type="button" id="wishlistTrigger" aria-label="Wishlist" style="background: linear-gradient(135deg, #fbbf24, #f59e0b);">
+          ♡
+          <span class="cart-badge" id="wishlistCount">0</span>
+        </button>
+        <button class="icon-button" type="button" id="profileTrigger" aria-label="Profil" style="background: linear-gradient(135deg, #22c55e, #16a34a);">
+          👤
+        </button>
+        <label class="search-box" aria-label="Cari produk">
+          <span>🔎</span>
+          <input id="searchInput" type="search" placeholder="Cari produk favorit..." />
+        </label>
+        <button class="icon-button" id="cartTrigger" type="button" aria-label="Buka keranjang">
+          🛒
+          <span class="cart-badge" data-cart-count>0</span>
+        </button> 
+      </div>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <section class="hero">
+      <div class="hero-card">
+        <span class="eyebrow">✨ Koleksi terlaris</span>
+        <h1>Belanja <span>lebih smart</span> dengan gaya modern.</h1>
+        <p>
+          Temukan produk pilihan untuk kebutuhan harian, gadget, fashion, dan aksesoris dengan kualitas premium dan harga bersaing.
+        </p>
+        <div class="hero-actions">
+          <a href="#catalog" class="primary-btn">Jelajahi Produk</a>
+          <button class="secondary-btn" type="button" id="shopNowBtn">Mulai Belanja</button>
+        </div>
+        <div class="hero-metrics">
+          <div class="metric">
+            <strong>12K+</strong>
+            <span>Pelanggan aktif</span>
+          </div>
+          <div class="metric">
+            <strong>4.9/5</strong>
+            <span>Ulasan produk</span>
+          </div>
+          <div class="metric">
+            <strong>24 jam</strong>
+            <span>Pengiriman cepat</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-label="Promo utama">
+        <div class="product-showcase">
+          <div class="float-card top">
+            <span class="emoji">🎧</span>
+            <span class="feature-badge"><strong>Audio Pro</strong>Diskon 25%</span>
+          </div>
+          <div class="sale-visual">🛒</div>
+          <div class="float-card bottom">
+            <span class="emoji">⚡</span>
+            <span class="feature-badge"><strong>Free Shipping</strong>Pesan hari ini</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="catalog-section container" id="catalog">
+      <div class="section-head">
+        <h2>Produk <span style="color: var(--primary);">Unggulan</span></h2>
+        <div class="pill-row" aria-label="Filter kategori">
+          <button class="category-pill active" type="button" data-category="all">Semua</button>
+          <button class="category-pill" type="button" data-category="Elektronik">Elektronik</button>
+          <button class="category-pill" type="button" data-category="Pakaian">Pakaian</button>
+          <button class="category-pill" type="button" data-category="Aksesoris">Aksesoris</button>
+        </div>
+      </div>
+
+      <div id="productGrid" class="product-grid" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <aside class="cart-drawer" id="cartDrawer" aria-label="Keranjang belanja">
+    <div class="cart-header">
+      <h3>Keranjang</h3>
+      <button class="close-cart" id="closeCart" type="button" aria-label="Tutup keranjang">×</button>
+    </div>
+    <div id="cartItems" class="cart-items"></div>
+    <div class="cart-footer">
+      <div class="total-row">
+        <span>Total</span>
+        <strong id="cartTotal">Rp 0</strong>
+      </div>
+      <button type="button" class="primary-btn checkout-btn" id="checkoutFromCart">Checkout</button>
+    </div>
+  </aside>
+
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <div class="toaster" id="toast"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tas Ransel Urban - Mini Shop</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, sans-serif; }
+    body {
+      min-height: 100vh; display: flex; justify-content: center; align-items: center;
+      background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 100%); padding: 30px 20px;
+    }
+    .back, .cart-btn {
+      position: fixed; top: 20px; background: #fff; color: #333;
+      text-decoration: none; padding: 8px 16px; border-radius: 20px;
+      font-size: 13px; font-weight: 600;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1); z-index: 5;
+    }
+    .back { left: 20px; }
+    .cart-btn { right: 20px; display: flex; align-items: center; gap: 6px; font-weight: 700; }
+    .cart-btn .badge-cart {
+      background: #ff9f43; color: #fff; font-size: 11px;
+      padding: 2px 7px; border-radius: 10px; min-width: 18px; text-align: center;
+    }
+    .product-card {
+      background: #fff; width: 100%; max-width: 340px;
+      border-radius: 20px; overflow: hidden;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+    }
+    .product-image {
+      height: 220px; background: linear-gradient(135deg, #ff9f43 0%, #feca57 100%);
+      display: flex; justify-content: center; align-items: center;
+      font-size: 90px; position: relative;
+    }
+    .badge {
+      position: absolute; top: 15px; left: 15px;
+      background: #ff4757; color: #fff; font-size: 11px; font-weight: bold;
+      padding: 5px 12px; border-radius: 20px;
+    }
+    .product-info { padding: 25px 22px; }
+    .kategori { font-size: 11px; color: #999; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600; margin-bottom: 6px; }
+    h3 { font-size: 20px; color: #333; margin-bottom: 8px; }
+    .deskripsi { font-size: 13px; color: #777; line-height: 1.5; margin-bottom: 15px; }
+    .fitur { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 15px; }
+    .fitur span { background: #fff4e0; color: #ff9f43; padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+    .varian-group { margin-bottom: 18px; }
+    .varian-label { font-size: 12px; color: #666; font-weight: 700; text-transform: uppercase; margin-bottom: 8px; }
+    .opsi-group { display: flex; flex-wrap: wrap; gap: 8px; }
+    .opsi-btn {
+      padding: 7px 14px; border: 2px solid #e5e7f0; background: #fff;
+      border-radius: 8px; font-size: 12px; font-weight: 600; color: #555;
+      cursor: pointer;
+    }
+    .opsi-btn.active { border-color: #ff9f43; background: #ff9f43; color: #fff; }
+    .harga { display: flex; align-items: baseline; gap: 10px; margin-bottom: 18px; }
+    .harga-baru { font-size: 24px; font-weight: 800; color: #ff9f43; }
+    .harga-lama { font-size: 14px; color: #bbb; text-decoration: line-through; }
+    .btn-beli {
+      width: 100%; padding: 13px;
+      background: linear-gradient(90deg, #ff9f43, #ee5a24);
+      color: #fff; border: none; border-radius: 12px;
+      font-size: 14px; font-weight: bold; cursor: pointer;
+    }
+    .notif {
+      position: fixed; top: 20px; left: 50%;
+      transform: translateX(-50%) translateY(-100px);
+      background: #fff; padding: 14px 24px; border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      font-size: 14px; font-weight: 600; color: #ff9f43;
+      opacity: 0; transition: all 0.4s ease; z-index: 999;
+      border-left: 5px solid #ff9f43; min-width: 240px; text-align: center;
+    }
+    .notif.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+  </style>
+</head>
+<body>
+  <a href="menu.html" class="back">← Kembali</a>
+  <a href="keranjang.html" class="cart-btn">🛒 <span class="badge-cart" id="cartCount">0</span></a>
+  <div class="notif" id="notif">✅ Ditambahkan!</div>
+
+  <div class="product-card">
+    <div class="product-image">
+      <span class="badge">BEST</span>🎒
+    </div>
+    <div class="product-info">
+      <div class="kategori">Tas & Ransel</div>
+      <h3>Tas Ransel Urban</h3>
+      <p class="deskripsi">Tas anti air dengan banyak kompartemen untuk laptop & perlengkapan.</p>
+      <div class="fitur"><span>💧 Anti Air</span><span>💻 Slot Laptop</span><span>🎒 25L</span></div>
+
+      <div class="varian-group">
+        <div class="varian-label">Pilih Warna:</div>
+        <div class="opsi-group" id="ukuranGroup">
+          <button class="opsi-btn active" data-ukuran="Hitam">Hitam</button>
+          <button class="opsi-btn" data-ukuran="Abu">Abu</button>
+          <button class="opsi-btn" data-ukuran="Navy">Navy</button>
+        </div>
+      </div>
+
+      <div class="harga">
+        <span class="harga-baru">Rp 275.000</span>
+        <span class="harga-lama">Rp 400.000</span>
+      </div>
+      <button class="btn-beli" id="btnBeli">🛒 Tambah ke Keranjang</button>
+    </div>
+  </div>
+
+  <script>
+    const PRODUK = { id: 4, nama: "Tas Ransel Urban", harga: 275000, emoji: "🎒", tema: "t-orange" };
+    let ukuranDipilih = "Hitam";
+    const notif = document.getElementById("notif");
+
+    function tampilNotif(msg) {
+      notif.textContent = msg;
+      notif.classList.add("show");
+      setTimeout(() => notif.classList.remove("show"), 2500);
+    }
+    function updateCartBadge() {
+      const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+      document.getElementById("cartCount").textContent = cart.reduce((s, i) => s + i.qty, 0);
+    }
+
+    document.querySelectorAll("#ukuranGroup .opsi-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll("#ukuranGroup .opsi-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        ukuranDipilih = btn.dataset.ukuran;
+      });
+    });
+
+    document.getElementById("btnBeli").addEventListener("click", () => {
+      let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+      const varianBaru = `Warna ${ukuranDipilih}`;
+      const idx = cart.findIndex(i => i.id === PRODUK.id && i.varian === varianBaru);
+      if (idx !== -1) cart[idx].qty += 1;
+      else cart.push({ ...PRODUK, varian: varianBaru, qty: 1 });
+      localStorage.setItem("cart", JSON.stringify(cart));
+      updateCartBadge();
+      tampilNotif(`✅ ${PRODUK.nama} (${varianBaru}) ditambahkan!`);
+    });
+
+    updateCartBadge();
+  </script>
+</body>
+</html>

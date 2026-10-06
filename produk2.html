@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Headphone Bass+ - Mini Shop</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', 'Segoe UI', sans-serif; }
+    body {
+      min-height: 100vh; display: flex; justify-content: center; align-items: center;
+      background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%); padding: 30px 20px;
+    }
+    .back, .cart-btn {
+      position: fixed; top: 20px;
+      background: #fff; color: #333; text-decoration: none;
+      padding: 8px 16px; border-radius: 20px;
+      font-size: 13px; font-weight: 600;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1); z-index: 5;
+    }
+    .back { left: 20px; }
+    .cart-btn { right: 20px; display: flex; align-items: center; gap: 6px; font-weight: 700; }
+    .cart-btn .badge-cart {
+      background: #4a69bd; color: #fff;
+      font-size: 11px; padding: 2px 7px;
+      border-radius: 10px; min-width: 18px; text-align: center;
+    }
+    .product-card {
+      background: #fff; width: 100%; max-width: 340px;
+      border-radius: 20px; overflow: hidden;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+    }
+    .product-image {
+      height: 220px; background: linear-gradient(135deg, #4a69bd 0%, #6a89cc 100%);
+      display: flex; justify-content: center; align-items: center;
+      font-size: 90px; position: relative;
+    }
+    .wishlist {
+      position: absolute; top: 15px; right: 15px;
+      background: rgba(255,255,255,0.9); border: none;
+      width: 38px; height: 38px; border-radius: 50%;
+      cursor: pointer; font-size: 16px;
+      display: flex; justify-content: center; align-items: center;
+    }
+    .wishlist.active { background: #ff4757; }
+    .product-info { padding: 25px 22px; }
+    .kategori { font-size: 11px; color: #999; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600; margin-bottom: 6px; }
+    h3 { font-size: 20px; color: #333; margin-bottom: 8px; }
+    .deskripsi { font-size: 13px; color: #777; line-height: 1.5; margin-bottom: 15px; }
+    .fitur { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 15px; }
+    .fitur span { background: #eef4ff; color: #4a69bd; padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+    .varian-group { margin-bottom: 18px; }
+    .varian-label { font-size: 12px; color: #666; font-weight: 700; text-transform: uppercase; margin-bottom: 8px; }
+    .opsi-group { display: flex; flex-wrap: wrap; gap: 8px; }
+    .opsi-btn {
+      padding: 7px 14px; border: 2px solid #e5e7f0; background: #fff;
+      border-radius: 8px; font-size: 12px; font-weight: 600; color: #555;
+      cursor: pointer; transition: all 0.2s ease;
+    }
+    .opsi-btn.active { border-color: #4a69bd; background: #4a69bd; color: #fff; }
+    .harga { display: flex; align-items: baseline; gap: 10px; margin-bottom: 18px; }
+    .harga-baru { font-size: 24px; font-weight: 800; color: #4a69bd; }
+    .harga-lama { font-size: 14px; color: #bbb; text-decoration: line-through; }
+    .btn-beli {
+      width: 100%; padding: 13px;
+      background: linear-gradient(90deg, #4a69bd, #6a89cc);
+      color: #fff; border: none; border-radius: 12px;
+      font-size: 14px; font-weight: bold; cursor: pointer;
+    }
+    .notif {
+      position: fixed; top: 20px; left: 50%;
+      transform: translateX(-50%) translateY(-100px);
+      background: #fff; padding: 14px 24px; border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      font-size: 14px; font-weight: 600; color: #4a69bd;
+      opacity: 0; transition: all 0.4s ease; z-index: 999;
+      border-left: 5px solid #4a69bd; min-width: 240px; text-align: center;
+    }
+    .notif.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+  </style>
+</head>
+<body>
+  <a href="menu.html" class="back">← Kembali</a>
+  <a href="keranjang.html" class="cart-btn">🛒 <span class="badge-cart" id="cartCount">0</span></a>
+  <div class="notif" id="notif">✅ Ditambahkan!</div>
+
+  <div class="product-card">
+    <div class="product-image">
+      <button class="wishlist" id="wishlist">🤍</button>🎧
+    </div>
+    <div class="product-info">
+      <div class="kategori">Audio</div>
+      <h3>Headphone Bass+</h3>
+      <p class="deskripsi">Headphone wireless dengan bass mendalam & baterai tahan 30 jam.</p>
+      <div class="fitur"><span>🎵 Hi-Fi</span><span>🔋 30 Jam</span><span>📶 BT 5.0</span></div>
+
+      <div class="varian-group">
+        <div class="varian-label">Pilih Tipe:</div>
+        <div class="opsi-group" id="ukuranGroup">
+          <button class="opsi-btn active" data-ukuran="Standar">Standar</button>
+          <button class="opsi-btn" data-ukuran="Pro">Pro</button>
+          <button class="opsi-btn" data-ukuran="Max">Max</button>
+        </div>
+      </div>
+
+      <div class="harga">
+        <span class="harga-baru">Rp 425.000</span>
+        <span class="harga-lama">Rp 650.000</span>
+      </div>
+      <button class="btn-beli" id="btnBeli">🛒 Tambah ke Keranjang</button>
+    </div>
+  </div>
+
+  <script>
+    const PRODUK = { id: 2, nama: "Headphone Bass+", harga: 425000, emoji: "🎧", tema: "t-blue" };
+    let ukuranDipilih = "Standar", warnaDipilih = "";
+    const notif = document.getElementById("notif");
+
+    function tampilNotif(msg) {
+      notif.textContent = msg;
+      notif.classList.add("show");
+      setTimeout(() => notif.classList.remove("show"), 2500);
+    }
+    function updateCartBadge() {
+      const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+      document.getElementById("cartCount").textContent = cart.reduce((s, i) => s + i.qty, 0);
+    }
+
+    document.querySelectorAll("#ukuranGroup .opsi-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll("#ukuranGroup .opsi-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        ukuranDipilih = btn.dataset.ukuran;
+      });
+    });
+
+    document.getElementById("wishlist").addEventListener("click", function() {
+      this.classList.toggle("active");
+      this.textContent = this.classList.contains("active") ? "❤️" : "🤍";
+    });
+
+    document.getElementById("btnBeli").addEventListener("click", () => {
+      let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+      const varianBaru = `Tipe ${ukuranDipilih}`;
+      const idx = cart.findIndex(i => i.id === PRODUK.id && i.varian === varianBaru);
+      if (idx !== -1) cart[idx].qty += 1;
+      else cart.push({ ...PRODUK, varian: varianBaru, qty: 1 });
+      localStorage.setItem("cart", JSON.stringify(cart));
+      updateCartBadge();
+      tampilNotif(`✅ ${PRODUK.nama} (${varianBaru}) ditambahkan!`);
+    });
+
+    updateCartBadge();
+  </script>
+</body>
+</html>

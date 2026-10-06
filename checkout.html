@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout | MiniShop</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-page="checkout">
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="index.html" class="brand" aria-label="Back to catalog">
+        <span class="brand-mark">🛍️</span>
+        <span>Mini<span style="color: var(--primary);">Shop</span></span>
+      </a>
+      <nav class="nav-links" aria-label="Navigasi checkout">
+        <a href="index.html">Beranda</a>
+        <a href="index.html">Produk</a>
+        <a href="keranjang.html">Keranjang</a>
+        <a href="checkout.html" class="active">Checkout</a>
+      </nav>
+      <div class="header-actions">
+        <div class="user-pill" style="display:flex; align-items:center; gap:10px;">
+          <span class="user-label">Halo, <strong id="userName">Guest</strong></span>
+          <button class="secondary-btn" id="loginAction" type="button" style="padding:10px 14px;">Login</button>
+          <button class="secondary-btn" id="logoutBtn" type="button" style="padding:10px 14px; display:none;">Logout</button>
+        </div>
+        <button class="icon-button" type="button" onclick="window.location.href='keranjang.html'" aria-label="Kembali ke keranjang">
+          🛒
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-header">
+    <h1 class="page-title">Checkout <span style="color: var(--primary);">Pembayaran</span></h1>
+    <p class="page-subtitle">Lengkapi data pengiriman dan metode pembayaran untuk melanjutkan pesanan.</p>
+  </main>
+
+  <div class="checkout-wrap">
+    <div class="checkout-layout">
+      <section class="form-card">
+        <div class="form-grid">
+          <div class="field">
+            <label for="customerName">Nama Lengkap</label>
+            <input id="customerName" type="text" placeholder="Masukkan nama lengkap Anda" />
+          </div>
+
+          <div class="field">
+            <label for="address">Alamat Pengiriman</label>
+            <textarea id="address" rows="4" placeholder="Contoh: Jl. Merdeka No. 12, Jakarta Selatan"></textarea>
+          </div>
+
+          <div class="field">
+            <label for="phone">No. Telepon</label>
+            <input id="phone" type="tel" placeholder="Contoh: 0812-3456-7890" />
+          </div>
+
+          <div class="field">
+            <label>Metode Pembayaran</label>
+            <div class="payment-list">
+              <button class="payment-option active" type="button" data-payment="Transfer Bank">
+                <span class="payment-icon">🏦</span>
+                <span>Transfer Bank</span>
+              </button>
+              <button class="payment-option" type="button" data-payment="E-Wallet">
+                <span class="payment-icon">📱</span>
+                <span>E-Wallet</span>
+              </button>
+              <button class="payment-option" type="button" data-payment="Kartu Kredit">
+                <span class="payment-icon">💳</span>
+                <span>Kartu Kredit</span>
+              </button>
+              <button class="payment-option" type="button" data-payment="COD">
+                <span class="payment-icon">💵</span>
+                <span>Cash on Delivery</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <aside class="summary-card cart-summary">
+        <h3>Ringkasan Pesanan</h3>
+        <div id="checkoutItems" class="checkout-list"></div>
+
+        <div class="summary-grid">
+          <div class="summary-row">
+            <span>Subtotal</span>
+            <strong id="checkoutSubtotal">Rp 0</strong>
+          </div>
+          <div class="summary-row">
+            <span>Ongkir</span>
+            <strong id="checkoutShipping">Rp 0</strong>
+          </div>
+          <div class="summary-row total">
+            <span>Total</span>
+            <strong id="checkoutTotal">Rp 0</strong>
+          </div>
+        </div>
+
+        <button type="button" class="primary-btn" id="placeOrder">Buat Pesanan</button>
+      </aside>
+    </div>
+  </div>
+
+  <div class="toaster" id="toast"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

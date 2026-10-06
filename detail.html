@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Detail Produk | MiniShop</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-page="detail">
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="index.html" class="brand" aria-label="MiniShop home">
+        <span class="brand-mark">🛍️</span>
+        <span>Mini<span style="color: var(--primary);">Shop</span></span>
+      </a>
+      <nav class="nav-links" aria-label="Navigasi detail produk">
+        <a href="index.html">Beranda</a>
+        <a href="index.html" class="active">Produk</a>
+        <a href="keranjang.html">Keranjang</a>
+        <a href="checkout.html">Checkout</a>
+      </nav>
+      <div class="header-actions">
+        <div class="user-pill" style="display:flex; align-items:center; gap:10px;">
+          <span class="user-label">Halo, <strong id="userName">Guest</strong></span>
+          <button class="secondary-btn" id="loginAction" type="button" style="padding:10px 14px;">Login</button>
+          <button class="secondary-btn" id="logoutBtn" type="button" style="padding:10px 14px; display:none;">Logout</button>
+        </div>
+        <button class="icon-button" type="button" id="cartTrigger" aria-label="Buka keranjang">
+          🛒
+          <span class="cart-badge" data-cart-count>0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="detail-shell">
+    <div id="detailContent"></div>
+  </main>
+
+  <aside class="cart-drawer" id="cartDrawer" aria-label="Keranjang belanja">
+    <div class="cart-header">
+      <h3>Keranjang</h3>
+      <button class="close-cart" id="closeCart" type="button" aria-label="Tutup keranjang">×</button>
+    </div>
+    <div id="cartItems" class="cart-items"></div>
+    <div class="cart-footer">
+      <div class="total-row">
+        <span>Total</span>
+        <strong id="cartTotal">Rp 0</strong>
+      </div>
+      <button type="button" class="primary-btn checkout-btn" id="checkoutFromCart">Checkout</button>
+    </div>
+  </aside>
+
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <div class="toaster" id="toast"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
